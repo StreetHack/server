@@ -47,7 +47,7 @@ class FilesDropPluginTest extends TestCase {
 	/** @var ResponseInterface|\PHPUnit_Framework_MockObject_MockObject */
 	private $response;
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->view = $this->createMock(View::class);

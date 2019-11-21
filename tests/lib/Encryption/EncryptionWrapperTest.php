@@ -44,7 +44,7 @@ class EncryptionWrapperTest extends TestCase {
 	/** @var  \PHPUnit_Framework_MockObject_MockObject | \OC\Memcache\ArrayCache */
 	private $arrayCache;
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->arrayCache = $this->createMock(ArrayCache::class);

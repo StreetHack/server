@@ -54,7 +54,7 @@ class CryptTest extends TestCase {
 	/** @var Crypt */
 	private $crypt;
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->logger = $this->getMockBuilder(ILogger::class)

@@ -60,7 +60,7 @@ class MoveCalendarTest extends TestCase {
 	/** @var MoveCalendar */
 	private $command;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->userManager = $this->createMock(IUserManager::class);

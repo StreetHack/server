@@ -97,7 +97,7 @@ class ManagerTest extends \Test\TestCase {
 	/** @var  \OC_Defaults|\PHPUnit_Framework_MockObject_MockObject */
 	protected $defaults;
 
-	public function setUp() {
+	public function setUp(): void {
 
 		$this->logger = $this->createMock(ILogger::class);
 		$this->config = $this->createMock(IConfig::class);

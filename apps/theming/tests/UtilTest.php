@@ -45,7 +45,7 @@ class UtilTest extends TestCase {
 	/** @var IAppManager */
 	protected $appManager;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->config = $this->createMock(IConfig::class);
 		$this->appData = $this->createMock(IAppData::class);

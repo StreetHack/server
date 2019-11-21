@@ -71,7 +71,7 @@ class PublicCalendarRootTest extends TestCase {
 	/** @var ILogger */
 	private $logger;
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$db = \OC::$server->getDatabaseConnection();
@@ -107,7 +107,7 @@ class PublicCalendarRootTest extends TestCase {
 			$this->l10n, $this->config);
 	}
 
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 
 		if (is_null($this->backend)) {

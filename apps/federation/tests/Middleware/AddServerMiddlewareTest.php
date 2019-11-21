@@ -49,7 +49,7 @@ class AddServerMiddlewareTest extends TestCase {
 	/** @var  \PHPUnit_Framework_MockObject_MockObject | SettingsController */
 	private $controller;
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->logger = $this->getMockBuilder(ILogger::class)->getMock();

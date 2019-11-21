@@ -69,7 +69,7 @@ class TagServiceTest extends \Test\TestCase {
 	 */
 	private $tagger;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->user = static::getUniqueID('user');
 		$this->activityManager = $this->createMock(IManager::class);
@@ -111,7 +111,7 @@ class TagServiceTest extends \Test\TestCase {
 
 	}
 
-	protected function tearDown() {
+	protected function tearDown(): void {
 		\OC_User::setUserId('');
 		$user = \OC::$server->getUserManager()->get($this->user);
 		if ($user !== null) { $user->delete(); }
