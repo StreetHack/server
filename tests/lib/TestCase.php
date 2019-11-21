@@ -159,7 +159,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 
 		// further cleanup
 		$hookExceptions = \OC_Hook::$thrownExceptions;
-		\OC_Hook::$thrownExceptions = [];Con
+		\OC_Hook::$thrownExceptions = [];
 		\OC::$server->getLockingProvider()->releaseAll();
 		if (!empty($hookExceptions)) {
 			throw $hookExceptions[0];
