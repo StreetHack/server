@@ -302,6 +302,7 @@ class Manager implements IManager {
 			/* Check if this is an incoming share */
 			$incomingShares = $this->getSharedWith($share->getSharedBy(), Share::SHARE_TYPE_USER, $userMountPoint, -1, 0);
 			$incomingShares = array_merge($incomingShares, $this->getSharedWith($share->getSharedBy(), Share::SHARE_TYPE_GROUP, $userMountPoint, -1, 0));
+			$incomingShares = array_merge($incomingShares, $this->getSharedWith($share->getSharedBy(), Share::SHARE_TYPE_CIRCLE, $userMountPoint, -1, 0));
 			$incomingShares = array_merge($incomingShares, $this->getSharedWith($share->getSharedBy(), Share::SHARE_TYPE_ROOM, $userMountPoint, -1, 0));
 
 			/** @var \OCP\Share\IShare[] $incomingShares */
@@ -923,6 +924,30 @@ class Manager implements IManager {
 				'path' => $userFolder->getRelativePath($share->getNode()->getPath()),
 			));
 		}
+
+		return $share;
+	}
+
+	/**
+	 * Accept a share.
+	 *
+	 * @param IShare $share
+	 * @param string $recipientId
+	 * @return IShare The share object
+	 * @throws \InvalidArgumentException
+	 * @since 9.0.0
+	 */
+	public function acceptShare(IShare $share, string $recipientId): IShare {
+		[$providerId, ] = $this->splitFullId($share->getFullId());
+		$provider = $this->factory->getProvider($providerId);
+
+		if (!method_exists($provider, 'acceptShare')) {
+			// TODO FIX ME
+			throw new \InvalidArgumentException('Share provider does not support accepting');
+		}
+		$provider->acceptShare($share, $recipientId);
+		$event = new GenericEvent($share);
+		$this->eventDispatcher->dispatch('OCP\Share::postAcceptShare', $event);
 
 		return $share;
 	}
@@ -1671,4 +1696,11 @@ class Manager implements IManager {
 		return true;
 	}
 
+	public function getAllShares(): iterable {
+		$providers = $this->factory->getAllProviders();
+
+		foreach ($providers as $provider) {
+			yield from $provider->getAllShares();
+		}
+	}
 }

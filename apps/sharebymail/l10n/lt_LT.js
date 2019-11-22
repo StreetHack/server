@@ -1,8 +1,8 @@
 OC.L10N.register(
     "sharebymail",
     {
-    "Shared with %1$s" : "Pasidalinta su %1$s",
-    "Shared with {email}" : "Pasidalinta su {email}",
+    "Shared with %1$s" : "Bendrinama su %1$s",
+    "Shared with {email}" : "Bendrinama su {email}",
     "Shared with %1$s by %2$s" : "%2$s pasidalino su %1$s",
     "Shared with {email} by {actor}" : "{actor} pasidalino su {email}",
     "Unshared from %1$s" : "Nebesidalinama su %1$s",
@@ -32,8 +32,6 @@ OC.L10N.register(
     "Click the button below to open it." : "Norėdami atverti failą, spustelėkite žemiau esantį mygtuką.",
     "Open »%s«" : "Atverti „%s“",
     "%1$s via %2$s" : "%1$s per %2$s",
-    "%1$s shared »%2$s« with you.\nYou should have already received a separate mail with a link to access it.\n" : "%1$s pasidalino „%2$s“ su jumis.\nTurėjote gauti el. laišką su prieigos nuoroda.\n",
-    "%1$s shared »%2$s« with you. You should have already received a separate mail with a link to access it." : "%1$s pasidalino „%2$s“ su jumis.\nTurėjote gauti el. laišką su prieigos nuoroda.",
     "Password to access »%1$s« shared to you by %2$s" : "%2$s pasidalino slaptažodžiu, reikalingu atverti „%1$s“",
     "Password to access »%s«" : "Slaptažodis, skirtas prieigai prie „%s“",
     "It is protected with the following password:" : "Apsaugota šiuo slaptažodžiu:",
@@ -44,9 +42,9 @@ OC.L10N.register(
     "This is the password:" : "Štai yra slaptažodis:",
     "You can choose a different password at any time in the share dialog." : "Dalinimosi dialoge bet kuriuo metu galite pasirinkti kitą slaptažodį.",
     "Could not find share" : "Nepavyko rasti viešinio",
-    "Share by mail" : "Pasidalinti el. paštu",
+    "Share by mail" : "Bendrinimas el. paštu",
     "Share provider which allows you to share files by mail" : "Pasidalinimo teikėjas, kuris leidžia dalintis failais el. paštu",
-    "Allows users to share a personalized link to a file or folder by putting in an email address." : "Leidžia vartotojams pasidalinti asmenine nuoroda į failą ar aplanką, siunčiant el. paštu.",
+    "Allows users to share a personalized link to a file or folder by putting in an email address." : "Leidžia naudotojams bendrinti asmeninę nuorodą į failą ar aplanką, įvedus el. pašto adresą.",
     "Send password by mail" : "Siųsti slaptažodį el. paštu",
     "Enforce password protection" : "Apsaugoti slaptažodžiu",
     "Password to access »%1$s« shared with %2$s" : "Slaptažodis prieigai prie „%1$s“ pasidalintas su %2$s"

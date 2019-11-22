@@ -77,6 +77,8 @@ class App {
 			$e = new \RuntimeException('App class ' . $applicationClassName . ' is not setup via query() but directly');
 			$setUpViaQuery = false;
 
+			$classNameParts = explode('\\', trim($applicationClassName, '\\'));
+
 			foreach ($e->getTrace() as $step) {
 				if (isset($step['class'], $step['function'], $step['args'][0]) &&
 					$step['class'] === ServerContainer::class &&
@@ -84,10 +86,16 @@ class App {
 					$step['args'][0] === $applicationClassName) {
 					$setUpViaQuery = true;
 					break;
+				} else if (isset($step['class'], $step['function'], $step['args'][0]) &&
+					$step['class'] === ServerContainer::class &&
+					$step['function'] === 'getAppContainer' &&
+					$step['args'][1] === $classNameParts[1]) {
+					$setUpViaQuery = true;
+					break;
 				}
 			}
 
-			if (!$setUpViaQuery) {
+			if (!$setUpViaQuery && $applicationClassName !== \OCP\AppFramework\App::class) {
 				\OC::$server->getLogger()->logException($e, [
 					'app' => $appName,
 				]);

@@ -29,14 +29,16 @@
 
 use OCA\Files_Sharing\ShareBackend\File;
 use OCA\Files_Sharing\ShareBackend\Folder;
+use OCA\Files_Sharing\AppInfo\Application;
 
 \OCA\Files_Sharing\Helper::registerHooks();
 
 \OC\Share\Share::registerBackend('file', File::class);
 \OC\Share\Share::registerBackend('folder', Folder::class, 'file');
 
-$application = new \OCA\Files_Sharing\AppInfo\Application();
+$application = \OC::$server->query(Application::class);
 $application->registerMountProviders();
+$application->register();
 
 $eventDispatcher = \OC::$server->getEventDispatcher();
 $eventDispatcher->addListener(
