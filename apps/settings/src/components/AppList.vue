@@ -115,7 +115,7 @@ export default {
 			return this.$store.getters.loading('list')
 		},
 		hasPendingUpdate() {
-			return this.apps.find(app => app.update)
+			return this.apps.find(app => app.update) > 1
 		},
 		showUpdateAll() {
 			return this.hasPendingUpdate && ['installed', 'updates'].includes(this.category)
@@ -219,16 +219,12 @@ export default {
 				})
 		},
 		updateAll() {
-			const appsToUpdate = []
 			const limit = pLimit(1)
-			Promise.all(appsToUpdate).then(() => {
-				this.apps
-					.filter(app => app.update)
-					.map(app => limit(() => this.$store.dispatch('updateApp', { appId: app.id }))
-					)
-			})
+			this.apps
+				.filter(app => app.update)
+				.map(app => limit(() => this.$store.dispatch('updateApp', { appId: app.id }))
+				)
 		}
-
 	}
 }
 </script>
