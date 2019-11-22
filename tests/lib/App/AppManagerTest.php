@@ -247,9 +247,6 @@ class AppManagerTest extends TestCase {
 	 * @dataProvider dataEnableAppForGroupsForbiddenTypes
 	 *
 	 * @param string $type
-	 *
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage test can't be enabled for groups.
 	 */
 	public function testEnableAppForGroupsForbiddenTypes($type) {
 		$group1 = $this->createMock(IGroup::class);
@@ -283,6 +280,9 @@ class AppManagerTest extends TestCase {
 			->willReturn([
 				'types' => [$type],
 			]);
+
+		$this->expectException(\Exception::class);
+		$this->expectExceptionMessage('test can\'t be enabled for groups');
 
 		$manager->enableAppForGroups('test', $groups);
 	}
