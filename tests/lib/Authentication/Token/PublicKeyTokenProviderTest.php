@@ -146,9 +146,10 @@ class PublicKeyTokenProviderTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Authentication\Exceptions\PasswordlessTokenException
 	 */
 	public function testGetPasswordPasswordLessToken() {
+	    $this->expectException(\OC\Authentication\Exceptions\PasswordlessTokenException::class);
+
 		$token = 'token1234';
 		$tk = new PublicKeyToken();
 		$tk->setPassword(null);
@@ -157,9 +158,10 @@ class PublicKeyTokenProviderTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Authentication\Exceptions\InvalidTokenException
 	 */
 	public function testGetPasswordInvalidToken() {
+	    $this->expectException(\OC\Authentication\Exceptions\InvalidTokenException::class);
+
 		$token = 'token';
 		$uid = 'user';
 		$user = 'User';
@@ -206,9 +208,10 @@ class PublicKeyTokenProviderTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Authentication\Exceptions\InvalidTokenException
 	 */
 	public function testSetPasswordInvalidToken() {
+	    $this->expectException(\OC\Authentication\Exceptions\InvalidTokenException::class);
+
 		$token = $this->createMock(IToken::class);
 		$tokenId = 'token123';
 		$password = '123456';

@@ -632,9 +632,10 @@ class CardDavBackendTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testGetCardIdFailed() {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$this->invokePrivate($this->backend, 'getCardId', [1, 'uri']);
 	}
 
@@ -785,9 +786,10 @@ class CardDavBackendTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testGetCardUriFailed() {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$this->backend->getCardUri(1);
 	}
 

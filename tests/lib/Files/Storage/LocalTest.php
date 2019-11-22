@@ -64,23 +64,26 @@ class LocalTest extends Storage {
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testInvalidArgumentsEmptyArray() {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		new \OC\Files\Storage\Local([]);
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testInvalidArgumentsNoArray() {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		new \OC\Files\Storage\Local(null);
 	}
 
 	/**
-	 * @expectedException \OCP\Files\ForbiddenException
 	 */
 	public function testDisallowSymlinksOutsideDatadir() {
+	    $this->expectException(\OCP\Files\ForbiddenException::class);
+
 		$subDir1 = $this->tmpDir . 'sub1';
 		$subDir2 = $this->tmpDir . 'sub2';
 		$sym = $this->tmpDir . 'sub1/sym';

@@ -182,12 +182,13 @@ class ChangeKeyStorageRootTest extends TestCase {
 
 	/**
 	 * @dataProvider dataTestPrepareNewRootException
-	 * @expectedException \Exception
 	 *
 	 * @param bool $dirExists
 	 * @param bool $couldCreateFile
 	 */
 	public function testPrepareNewRootException($dirExists, $couldCreateFile) {
+	    $this->expectException(\Exception::class);
+
 		$this->view->expects($this->once())->method('is_dir')->with('newRoot')
 			->willReturn($dirExists);
 		$this->view->expects($this->any())->method('file_put_contents')->willReturn($couldCreateFile);
@@ -372,9 +373,10 @@ class ChangeKeyStorageRootTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
 	 */
 	public function testTargetExistsException() {
+	    $this->expectException(\Exception::class);
+
 		$this->view->expects($this->once())->method('file_exists')->with('path')
 			->willReturn(true);
 

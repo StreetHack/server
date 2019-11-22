@@ -137,9 +137,10 @@ class RemotePluginTest extends TestCase {
 	 * @dataProvider dataTestSplitUserRemoteError
 	 *
 	 * @param string $id
-	 * @expectedException \Exception
 	 */
 	public function testSplitUserRemoteError($id) {
+	    $this->expectException(\Exception::class);
+
 		$this->instantiatePlugin();
 		$this->plugin->splitUserRemote($id);
 	}

@@ -106,9 +106,10 @@ class GlobalAuthTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\Files_External\Lib\InsufficientDataForMeaningfulAnswerException
 	 */
 	public function testNoCredentialsPersonal() {
+	    $this->expectException(\OCA\Files_External\Lib\InsufficientDataForMeaningfulAnswerException::class);
+
 		$this->credentialsManager->expects($this->never())
 			->method('retrieve');
 

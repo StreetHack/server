@@ -127,9 +127,10 @@ class MailerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
 	 */
 	public function testSendInvalidMailException() {
+	    $this->expectException(\Exception::class);
+
 		$message = $this->getMockBuilder('\OC\Mail\Message')
 			->disableOriginalConstructor()->getMock();
 		$message->expects($this->once())

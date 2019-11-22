@@ -368,9 +368,10 @@ class ManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
 	 */
 	public function testCreateUserSingleBackendExists() {
+	    $this->expectException(\Exception::class);
+
 		/**
 		 * @var \Test\Util\User\Dummy | \PHPUnit_Framework_MockObject_MockObject $backend
 		 */
@@ -421,10 +422,11 @@ class ManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
-	 * @expectedExceptionMessage Could not create user
 	 */
 	public function testCreateUserFromBackendWithBackendError() {
+	    $this->expectException(\InvalidArgumentException::class);
+	    $this->expectExceptionMessage('Could not create user');
+
 		/** @var IConfig|\PHPUnit_Framework_MockObject_MockObject $config */
 		$config = $this->createMock(IConfig::class);
 		/** @var \Test\Util\User\Dummy|\PHPUnit_Framework_MockObject_MockObject $backend */
@@ -440,9 +442,10 @@ class ManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
 	 */
 	public function testCreateUserTwoBackendExists() {
+	    $this->expectException(\Exception::class);
+
 		/**
 		 * @var \Test\Util\User\Dummy | \PHPUnit_Framework_MockObject_MockObject $backend1
 		 */

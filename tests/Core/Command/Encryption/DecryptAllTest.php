@@ -183,9 +183,10 @@ class DecryptAllTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
 	 */
 	public function testExecuteFailure() {
+	    $this->expectException(\Exception::class);
+
 		$instance = new DecryptAll(
 			$this->encryptionManager,
 			$this->appManager,

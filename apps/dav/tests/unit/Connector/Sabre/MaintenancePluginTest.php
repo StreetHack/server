@@ -47,10 +47,11 @@ class MaintenancePluginTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\ServiceUnavailable
-	 * @expectedExceptionMessage System in maintenance mode.
 	 */
 	public function testMaintenanceMode() {
+	    $this->expectException(\Sabre\DAV\Exception\ServiceUnavailable::class);
+	    $this->expectExceptionMessage('System in maintenance mode.');
+
 		$this->config
 			->expects($this->exactly(1))
 			->method('getSystemValueBool')

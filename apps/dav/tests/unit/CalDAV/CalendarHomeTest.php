@@ -69,10 +69,11 @@ class CalendarHomeTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\MethodNotAllowed
-	 * @expectedExceptionMessage The resource you tried to create has a reserved name
 	 */
 	public function testCreateCalendarReservedName() {
+	    $this->expectException(\Sabre\DAV\Exception\MethodNotAllowed::class);
+	    $this->expectExceptionMessage('The resource you tried to create has a reserved name');
+
 		/** @var MkCol | \PHPUnit_Framework_MockObject_MockObject $mkCol */
 		$mkCol = $this->createMock(MkCol::class);
 

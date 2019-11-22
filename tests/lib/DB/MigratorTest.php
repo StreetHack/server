@@ -103,9 +103,10 @@ class MigratorTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\DB\MigrationException
 	 */
 	public function testDuplicateKeyUpgrade() {
+	    $this->expectException(\OC\DB\MigrationException::class);
+
 		if ($this->isSQLite()) {
 			$this->markTestSkipped('sqlite does not throw errors when creating a new key on existing data');
 		}

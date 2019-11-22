@@ -97,9 +97,10 @@ class UtilTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Encryption\Exceptions\EncryptionHeaderKeyExistsException
 	 */
 	public function testCreateHeaderFailed() {
+	    $this->expectException(\OC\Encryption\Exceptions\EncryptionHeaderKeyExistsException::class);
+
 
 		$header = array('header1' => 1, 'header2' => 2, 'oc_encryption_module' => 'foo');
 

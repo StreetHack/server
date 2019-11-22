@@ -78,10 +78,11 @@ class DatabaseTest extends Backend {
 	}
 
 	/**
-	 * @expectedException \OC\HintException
-	 * @expectedExceptionMessage password change failed
 	 */
 	public function testVerifyPasswordEventFail() {
+	    $this->expectException(\OC\HintException::class);
+	    $this->expectExceptionMessage('password change failed');
+
 		$user = $this->getUser();
 		$this->backend->createUser($user, 'pass1');
 

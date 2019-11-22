@@ -259,9 +259,10 @@ class FileSearchBackendTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testSearchInvalidProp() {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$this->tree->expects($this->any())
 			->method('getNodeForPath')
 			->willReturn($this->davFolder);
@@ -296,9 +297,10 @@ class FileSearchBackendTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testSearchNonFolder() {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$davNode = $this->createMock(File::class);
 
 		$this->tree->expects($this->any())

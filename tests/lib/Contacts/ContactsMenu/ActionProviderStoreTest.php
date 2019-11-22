@@ -116,9 +116,10 @@ class ActionProviderStoreTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException Exception
 	 */
 	public function testGetProvidersWithQueryException() {
+	    $this->expectException(\Exception::class);
+
 		$user = $this->createMock(IUser::class);
 		$this->appManager->expects($this->once())
 			->method('getEnabledAppsForUser')

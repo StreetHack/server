@@ -146,9 +146,10 @@ class DefaultTokenMapperTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\Db\DoesNotExistException
 	 */
 	public function testGetInvalidToken() {
+	    $this->expectException(\OCP\AppFramework\Db\DoesNotExistException::class);
+
 		$token = 'thisisaninvalidtokenthatisnotinthedatabase';
 
 		$this->mapper->getToken($token);
@@ -176,16 +177,18 @@ class DefaultTokenMapperTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\Db\DoesNotExistException
 	 */
 	public function testGetTokenByIdNotFound() {
+	    $this->expectException(\OCP\AppFramework\Db\DoesNotExistException::class);
+
 		$this->mapper->getTokenById(-1);
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\Db\DoesNotExistException
 	 */
 	public function testGetInvalidTokenById() {
+	    $this->expectException(\OCP\AppFramework\Db\DoesNotExistException::class);
+
 		$id = 42;
 
 		$this->mapper->getToken($id);

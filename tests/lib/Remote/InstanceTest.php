@@ -74,10 +74,11 @@ class InstanceTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage refusing to connect to remote instance(example.com) over http that was previously accessible over https
 	 */
 	public function testPreventDowngradeAttach() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('refusing to connect to remote instance(example.com) over http that was previously accessible over https');
+
 		$instance = new Instance('example.com', $this->cache, $this->getClientService());
 		$this->expectGetRequest('https://example.com/status.php', '{"installed":true,"maintenance":false,"needsDbUpgrade":false,"version":"13.0.0.5","versionstring":"13.0.0 alpha","edition":"","productname":"Nextcloud"}');
 

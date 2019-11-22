@@ -85,10 +85,11 @@ class GroupLDAPPluginTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage No plugin implements createGroup in this LDAP Backend.
 	 */
 	public function testCreateGroupNotRegistered() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('No plugin implements createGroup in this LDAP Backend.');
+
 		$pluginManager = $this->getGroupPluginManager();
 		$pluginManager->createGroup('foo');
 	}
@@ -115,10 +116,11 @@ class GroupLDAPPluginTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage No plugin implements deleteGroup in this LDAP Backend.
 	 */
 	public function testDeleteGroupNotRegistered() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('No plugin implements deleteGroup in this LDAP Backend.');
+
 		$pluginManager = $this->getGroupPluginManager();
 		$pluginManager->deleteGroup('foo');
 	}
@@ -146,10 +148,11 @@ class GroupLDAPPluginTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage No plugin implements addToGroup in this LDAP Backend.
 	 */
 	public function testAddToGroupNotRegistered() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('No plugin implements addToGroup in this LDAP Backend.');
+
 		$pluginManager = $this->getGroupPluginManager();
 		$pluginManager->addToGroup('foo', 'bar');
 	}	
@@ -177,10 +180,11 @@ class GroupLDAPPluginTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage No plugin implements removeFromGroup in this LDAP Backend.
 	 */
 	public function testRemoveFromGroupNotRegistered() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('No plugin implements removeFromGroup in this LDAP Backend.');
+
 		$pluginManager = $this->getGroupPluginManager();
 		$pluginManager->removeFromGroup('foo', 'bar');
 	}
@@ -208,10 +212,11 @@ class GroupLDAPPluginTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage No plugin implements countUsersInGroup in this LDAP Backend.
 	 */
 	public function testCountUsersInGroupNotRegistered() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('No plugin implements countUsersInGroup in this LDAP Backend.');
+
 		$pluginManager = $this->getGroupPluginManager();
 		$pluginManager->countUsersInGroup('foo', 'bar');
 	}	
@@ -238,10 +243,11 @@ class GroupLDAPPluginTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage No plugin implements getGroupDetails in this LDAP Backend.
 	 */
 	public function testgetGroupDetailsNotRegistered() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('No plugin implements getGroupDetails in this LDAP Backend.');
+
 		$pluginManager = $this->getGroupPluginManager();
 		$pluginManager->getGroupDetails('foo');
 	}

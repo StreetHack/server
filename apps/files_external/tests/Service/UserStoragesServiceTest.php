@@ -189,9 +189,10 @@ class UserStoragesServiceTest extends StoragesServiceTest {
 	}
 
 	/**
-	 * @expectedException \OCA\Files_External\NotFoundException
 	 */
 	public function testGetAdminStorage() {
+	    $this->expectException(\OCA\Files_External\NotFoundException::class);
+
 		$backend = $this->backendService->getBackend('identifier:\OCA\Files_External\Lib\Backend\SMB');
 		$authMechanism = $this->backendService->getAuthMechanism('identifier:\Auth\Mechanism');
 

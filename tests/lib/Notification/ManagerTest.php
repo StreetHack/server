@@ -120,9 +120,10 @@ class ManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testNotifyInvalid() {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		/** @var \OCP\Notification\INotification|\PHPUnit_Framework_MockObject_MockObject $notification */
 		$notification = $this->getMockBuilder(INotification::class)
 			->disableOriginalConstructor()

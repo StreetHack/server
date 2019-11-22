@@ -53,10 +53,11 @@ class CachedSubscriptionObjectTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\MethodNotAllowed
-	 * @expectedExceptionMessage Creating objects in a cached subscription is not allowed
 	 */
 	public function testPut() {
+	    $this->expectException(\Sabre\DAV\Exception\MethodNotAllowed::class);
+	    $this->expectExceptionMessage('Creating objects in a cached subscription is not allowed');
+
 		$backend = $this->createMock(CalDavBackend::class);
 		$calendarInfo = [
 			'{http://owncloud.org/ns}owner-principal' => 'user1',
@@ -73,10 +74,11 @@ class CachedSubscriptionObjectTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\MethodNotAllowed
-	 * @expectedExceptionMessage Deleting objects in a cached subscription is not allowed
 	 */
 	public function testDelete() {
+	    $this->expectException(\Sabre\DAV\Exception\MethodNotAllowed::class);
+	    $this->expectExceptionMessage('Deleting objects in a cached subscription is not allowed');
+
 		$backend = $this->createMock(CalDavBackend::class);
 		$calendarInfo = [
 			'{http://owncloud.org/ns}owner-principal' => 'user1',

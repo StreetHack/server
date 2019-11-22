@@ -81,16 +81,18 @@ class SystemTagsByIdCollectionTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\Forbidden
 	 */
 	public function testForbiddenCreateFile() {
+	    $this->expectException(\Sabre\DAV\Exception\Forbidden::class);
+
 		$this->getNode()->createFile('555');
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\Forbidden
 	 */
 	public function testForbiddenCreateDirectory() {
+	    $this->expectException(\Sabre\DAV\Exception\Forbidden::class);
+
 		$this->getNode()->createDirectory('789');
 	}
 
@@ -114,9 +116,10 @@ class SystemTagsByIdCollectionTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\BadRequest
 	 */
 	public function testGetChildInvalidName() {
+	    $this->expectException(\Sabre\DAV\Exception\BadRequest::class);
+
 		$this->tagManager->expects($this->once())
 			->method('getTagsByIds')
 			->with(['invalid'])
@@ -126,9 +129,10 @@ class SystemTagsByIdCollectionTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\NotFound
 	 */
 	public function testGetChildNotFound() {
+	    $this->expectException(\Sabre\DAV\Exception\NotFound::class);
+
 		$this->tagManager->expects($this->once())
 			->method('getTagsByIds')
 			->with(['444'])
@@ -138,9 +142,10 @@ class SystemTagsByIdCollectionTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\NotFound
 	 */
 	public function testGetChildUserNotVisible() {
+	    $this->expectException(\Sabre\DAV\Exception\NotFound::class);
+
 		$tag = new SystemTag(123, 'Test', false, false);
 
 		$this->tagManager->expects($this->once())
@@ -232,9 +237,10 @@ class SystemTagsByIdCollectionTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\BadRequest
 	 */
 	public function testChildExistsBadRequest() {
+	    $this->expectException(\Sabre\DAV\Exception\BadRequest::class);
+
 		$this->tagManager->expects($this->once())
 			->method('getTagsByIds')
 			->with(['invalid'])

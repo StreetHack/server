@@ -230,10 +230,11 @@ class RateLimitingMiddlewareTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage My test exception
 	 */
 	public function testAfterExceptionWithOtherException() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('My test exception');
+
 		/** @var Controller|\PHPUnit_Framework_MockObject_MockObject $controller */
 		$controller = $this->createMock(Controller::class);
 

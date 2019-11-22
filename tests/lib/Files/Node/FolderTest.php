@@ -177,9 +177,10 @@ class FolderTest extends NodeTest {
 	}
 
 	/**
-	 * @expectedException \OCP\Files\NotPermittedException
 	 */
 	public function testNewFolderNotPermitted() {
+	    $this->expectException(\OCP\Files\NotPermittedException::class);
+
 		$manager = $this->createMock(Manager::class);
 		/**
 		 * @var \OC\Files\View | \PHPUnit_Framework_MockObject_MockObject $view
@@ -231,9 +232,10 @@ class FolderTest extends NodeTest {
 	}
 
 	/**
-	 * @expectedException \OCP\Files\NotPermittedException
 	 */
 	public function testNewFileNotPermitted() {
+	    $this->expectException(\OCP\Files\NotPermittedException::class);
+
 		$manager = $this->createMock(Manager::class);
 		/**
 		 * @var \OC\Files\View | \PHPUnit_Framework_MockObject_MockObject $view

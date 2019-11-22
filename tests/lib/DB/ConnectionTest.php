@@ -158,9 +158,10 @@ class ConnectionTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\PreConditionNotMetException
 	 */
 	public function testSetValuesOverWritePreconditionFailed() {
+	    $this->expectException(\OCP\PreConditionNotMetException::class);
+
 		$this->makeTestTable();
 		$this->connection->setValues('table', [
 			'integerfield' => 1
@@ -336,9 +337,10 @@ class ConnectionTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Doctrine\DBAL\Exception\UniqueConstraintViolationException
 	 */
 	public function testUniqueConstraintViolating() {
+	    $this->expectException(\Doctrine\DBAL\Exception\UniqueConstraintViolationException::class);
+
 		$this->makeTestTable();
 
 		$testQuery = 'INSERT INTO `*PREFIX*table` (`integerfield`, `textfield`) VALUES(?, ?)';

@@ -83,10 +83,11 @@ class CheckerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage Exception message
 	 */
 	public function testWriteAppSignatureOfNotExistingApp() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('Exception message');
+
 		$this->fileAccessHelper
 			->expects($this->at(0))
 			->method('assertDirectoryExists')
@@ -108,10 +109,11 @@ class CheckerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessageRegExp /[a-zA-Z\/_-]+ is not writable/
 	 */
 	public function testWriteAppSignatureWrongPermissions() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessageRegExp('/[a-zA-Z\\/_-]+ is not writable/');
+
 		$this->fileAccessHelper
 			->expects($this->once())
 			->method('file_put_contents')
@@ -481,10 +483,11 @@ class CheckerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage Exception message
 	 */
 	public function testWriteCoreSignatureWithException() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('Exception message');
+
 		$this->fileAccessHelper
 			->expects($this->at(0))
 			->method('assertDirectoryExists')
@@ -505,10 +508,11 @@ class CheckerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessageRegExp /[a-zA-Z\/_-]+ is not writable/
 	 */
 	public function testWriteCoreSignatureWrongPermissions() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessageRegExp('/[a-zA-Z\\/_-]+ is not writable/');
+
 		$this->fileAccessHelper
 			->expects($this->at(0))
 			->method('assertDirectoryExists')

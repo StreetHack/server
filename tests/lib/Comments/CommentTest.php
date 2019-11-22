@@ -52,9 +52,10 @@ class CommentTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\Comments\IllegalIDChangeException
 	 */
 	public function testSetIdIllegalInput() {
+	    $this->expectException(\OCP\Comments\IllegalIDChangeException::class);
+
 		$comment = new Comment();
 
 		$comment->setId('c23');
@@ -86,9 +87,10 @@ class CommentTest extends TestCase {
 
 	/**
 	 * @dataProvider simpleSetterProvider
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testSimpleSetterInvalidInput($field, $input) {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$comment = new Comment();
 		$setter = 'set' . $field;
 
@@ -110,18 +112,20 @@ class CommentTest extends TestCase {
 
 	/**
 	 * @dataProvider roleSetterProvider
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testSetRoleInvalidInput($role, $type, $id){
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$comment = new Comment();
 		$setter = 'set' . $role;
 		$comment->$setter($type, $id);
 	}
 
 	/**
-	 * @expectedException \OCP\Comments\MessageTooLongException
 	 */
 	public function testSetUberlongMessage() {
+	    $this->expectException(\OCP\Comments\MessageTooLongException::class);
+
 		$comment = new Comment();
 		$msg = str_pad('', IComment::MAX_MESSAGE_LENGTH + 1, 'x');
 		$comment->setMessage($msg);

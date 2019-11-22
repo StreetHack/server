@@ -815,9 +815,10 @@ class FileTest extends TestCase {
 	/**
 	 * Test setting name with setName() with invalid chars
 	 *
-	 * @expectedException \OCA\DAV\Connector\Sabre\Exception\InvalidPath
 	 */
 	public function testSetNameInvalidChars() {
+	    $this->expectException(\OCA\DAV\Connector\Sabre\Exception\InvalidPath::class);
+
 		// setup
 		$view = $this->getMockBuilder(View::class)
 			->setMethods(['getRelativePath'])
@@ -902,9 +903,10 @@ class FileTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\Forbidden
 	 */
 	public function testDeleteThrowsWhenDeletionNotAllowed() {
+	    $this->expectException(\Sabre\DAV\Exception\Forbidden::class);
+
 		// setup
 		$view = $this->getMockBuilder(View::class)
 			->getMock();
@@ -920,9 +922,10 @@ class FileTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\Forbidden
 	 */
 	public function testDeleteThrowsWhenDeletionFailed() {
+	    $this->expectException(\Sabre\DAV\Exception\Forbidden::class);
+
 		// setup
 		$view = $this->getMockBuilder(View::class)
 			->getMock();
@@ -943,9 +946,10 @@ class FileTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\DAV\Connector\Sabre\Exception\Forbidden
 	 */
 	public function testDeleteThrowsWhenDeletionThrows() {
+	    $this->expectException(\OCA\DAV\Connector\Sabre\Exception\Forbidden::class);
+
 		// setup
 		$view = $this->getMockBuilder(View::class)
 			->getMock();
@@ -1113,9 +1117,10 @@ class FileTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\ServiceUnavailable
 	 */
 	public function testGetFopenFails() {
+	    $this->expectException(\Sabre\DAV\Exception\ServiceUnavailable::class);
+
 		$view = $this->getMockBuilder(View::class)
 			->setMethods(['fopen'])
 			->getMock();
@@ -1133,9 +1138,10 @@ class FileTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\DAV\Connector\Sabre\Exception\Forbidden
 	 */
 	public function testGetFopenThrows() {
+	    $this->expectException(\OCA\DAV\Connector\Sabre\Exception\Forbidden::class);
+
 		$view = $this->getMockBuilder(View::class)
 			->setMethods(['fopen'])
 			->getMock();
@@ -1153,9 +1159,10 @@ class FileTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\NotFound
 	 */
 	public function testGetThrowsIfNoPermission() {
+	    $this->expectException(\Sabre\DAV\Exception\NotFound::class);
+
 		$view = $this->getMockBuilder(View::class)
 			->setMethods(['fopen'])
 			->getMock();

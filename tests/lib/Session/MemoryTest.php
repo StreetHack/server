@@ -17,9 +17,10 @@ class MemoryTest extends Session {
 	}
 
 	/**
-	 * @expectedException \OCP\Session\Exceptions\SessionNotAvailableException
 	 */
 	public function testThrowsExceptionOnGetId() {
+	    $this->expectException(\OCP\Session\Exceptions\SessionNotAvailableException::class);
+
 		$this->instance->getId();
 	}
 

@@ -88,9 +88,10 @@ class RootTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\Files\NotFoundException
 	 */
 	public function testGetNotFound() {
+	    $this->expectException(\OCP\Files\NotFoundException::class);
+
 		/**
 		 * @var \OC\Files\Storage\Storage $storage
 		 */
@@ -122,9 +123,10 @@ class RootTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\Files\NotPermittedException
 	 */
 	public function testGetInvalidPath() {
+	    $this->expectException(\OCP\Files\NotPermittedException::class);
+
 		/**
 		 * @var \OC\Files\View | \PHPUnit_Framework_MockObject_MockObject $view
 		 */
@@ -144,9 +146,10 @@ class RootTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\Files\NotFoundException
 	 */
 	public function testGetNoStorages() {
+	    $this->expectException(\OCP\Files\NotFoundException::class);
+
 		/**
 		 * @var \OC\Files\View | \PHPUnit_Framework_MockObject_MockObject $view
 		 */
@@ -202,10 +205,11 @@ class RootTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\User\NoUserException
-	 * @expectedExceptionMessage Backends provided no user object
 	 */
 	public function testGetUserFolderWithNoUserObj() {
+	    $this->expectException(\OC\User\NoUserException::class);
+	    $this->expectExceptionMessage('Backends provided no user object');
+
 		$root = new \OC\Files\Node\Root(
 			$this->createMock(Manager::class),
 			$this->createMock(View::class),

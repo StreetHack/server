@@ -272,9 +272,10 @@ class SessionTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\User\LoginException
 	 */
 	public function testLoginValidPasswordDisabled() {
+	    $this->expectException(\OC\User\LoginException::class);
+
 		$session = $this->getMockBuilder(Memory::class)->setConstructorArgs([''])->getMock();
 		$session->expects($this->never())
 			->method('set');
@@ -405,9 +406,10 @@ class SessionTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Authentication\Exceptions\PasswordLoginForbiddenException
 	 */
 	public function testLogClientInNoTokenPasswordWith2fa() {
+	    $this->expectException(\OC\Authentication\Exceptions\PasswordLoginForbiddenException::class);
+
 		$manager = $this->createMock(Manager::class);
 		$session = $this->createMock(ISession::class);
 		$request = $this->createMock(IRequest::class);
@@ -509,9 +511,10 @@ class SessionTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Authentication\Exceptions\PasswordLoginForbiddenException
 	 */
 	public function testLogClientInNoTokenPasswordNo2fa() {
+	    $this->expectException(\OC\Authentication\Exceptions\PasswordLoginForbiddenException::class);
+
 		$manager = $this->createMock(Manager::class);
 		$session = $this->createMock(ISession::class);
 		$request = $this->createMock(IRequest::class);
@@ -974,9 +977,10 @@ class SessionTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\User\LoginException
 	 */
 	public function testTryTokenLoginWithDisabledUser() {
+	    $this->expectException(\OC\User\LoginException::class);
+
 		$manager = $this->getMockBuilder('\OC\User\Manager')
 			->disableOriginalConstructor()
 			->getMock();

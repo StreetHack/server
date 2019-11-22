@@ -60,9 +60,10 @@ class ProviderManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Authentication\Exceptions\InvalidProviderException
 	 */
 	public function testTryEnableInvalidProvider() {
+	    $this->expectException(\OC\Authentication\Exceptions\InvalidProviderException::class);
+
 		$user = $this->createMock(IUser::class);
 		$this->providerManager->tryEnableProviderFor('none', $user);
 	}
@@ -106,9 +107,10 @@ class ProviderManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Authentication\Exceptions\InvalidProviderException
 	 */
 	public function testTryDisableInvalidProvider() {
+	    $this->expectException(\OC\Authentication\Exceptions\InvalidProviderException::class);
+
 		$user = $this->createMock(IUser::class);
 		$this->providerManager->tryDisableProviderFor('none', $user);
 	}

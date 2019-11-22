@@ -143,9 +143,10 @@ class DefaultShareProviderTest extends \Test\TestCase {
 
 
 	/**
-	 * @expectedException \OCP\Share\Exceptions\ShareNotFound
 	 */
 	public function testGetShareByIdNotExist() {
+	    $this->expectException(\OCP\Share\Exceptions\ShareNotFound::class);
+
 		$this->provider->getShareById(1);
 	}
 
@@ -835,9 +836,10 @@ class DefaultShareProviderTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\Share\Exceptions\ShareNotFound
 	 */
 	public function testGetShareByTokenNotFound() {
+	    $this->expectException(\OCP\Share\Exceptions\ShareNotFound::class);
+
 		$this->provider->getShareByToken('invalidtoken');
 	}
 
@@ -1538,10 +1540,11 @@ class DefaultShareProviderTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Share20\Exception\ProviderException
-	 * @expectedExceptionMessage  Recipient not in receiving group
 	 */
 	public function testDeleteFromSelfGroupUserNotInGroup() {
+	    $this->expectException(\OC\Share20\Exception\ProviderException::class);
+	    $this->expectExceptionMessage('Recipient not in receiving group');
+
 		$qb = $this->dbConn->getQueryBuilder();
 		$stmt = $qb->insert('share')
 			->values([
@@ -1583,10 +1586,11 @@ class DefaultShareProviderTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Share20\Exception\ProviderException
-	 * @expectedExceptionMessage Group "group" does not exist
 	 */
 	public function testDeleteFromSelfGroupDoesNotExist() {
+	    $this->expectException(\OC\Share20\Exception\ProviderException::class);
+	    $this->expectExceptionMessage('Group "group" does not exist');
+
 		$qb = $this->dbConn->getQueryBuilder();
 		$stmt = $qb->insert('share')
 			->values([
@@ -1674,10 +1678,11 @@ class DefaultShareProviderTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Share20\Exception\ProviderException
-	 * @expectedExceptionMessage Recipient does not match
 	 */
 	public function testDeleteFromSelfUserNotRecipient() {
+	    $this->expectException(\OC\Share20\Exception\ProviderException::class);
+	    $this->expectExceptionMessage('Recipient does not match');
+
 		$qb = $this->dbConn->getQueryBuilder();
 		$stmt = $qb->insert('share')
 			->values([
@@ -1717,10 +1722,11 @@ class DefaultShareProviderTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Share20\Exception\ProviderException
-	 * @expectedExceptionMessage Invalid shareType
 	 */
 	public function testDeleteFromSelfLink() {
+	    $this->expectException(\OC\Share20\Exception\ProviderException::class);
+	    $this->expectExceptionMessage('Invalid shareType');
+
 		$qb = $this->dbConn->getQueryBuilder();
 		$stmt = $qb->insert('share')
 			->values([

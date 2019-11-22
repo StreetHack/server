@@ -1115,9 +1115,10 @@ class UserTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
 	 */
 	public function testGetHomePathConfiguredNotAvailableNotAllowed() {
+	    $this->expectException(\Exception::class);
+
 		$this->connection->expects($this->any())
 			->method('__get')
 			->with($this->equalTo('homeFolderNamingRule'))

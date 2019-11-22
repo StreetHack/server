@@ -85,12 +85,13 @@ class SettingsControllerTest extends TestCase {
 
 	/**
 	 * @dataProvider checkServerFails
-	 * @expectedException \OC\HintException
 	 *
 	 * @param bool $isTrustedServer
 	 * @param bool $isOwnCloud
 	 */
 	public function testAddServerFail($isTrustedServer, $isOwnCloud) {
+	    $this->expectException(\OC\HintException::class);
+
 		$this->trustedServers
 			->expects($this->any())
 			->method('isTrustedServer')
@@ -133,12 +134,13 @@ class SettingsControllerTest extends TestCase {
 
 	/**
 	 * @dataProvider checkServerFails
-	 * @expectedException \OC\HintException
 	 *
 	 * @param bool $isTrustedServer
 	 * @param bool $isOwnCloud
 	 */
 	public function testCheckServerFail($isTrustedServer, $isOwnCloud) {
+	    $this->expectException(\OC\HintException::class);
+
 		$this->trustedServers
 			->expects($this->any())
 			->method('isTrustedServer')

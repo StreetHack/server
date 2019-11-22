@@ -60,10 +60,11 @@ class ListCalendarsTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testWithBadUser()
 	{
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$this->userManager->expects($this->once())
 			->method('userExists')
 			->with(self::USERNAME)

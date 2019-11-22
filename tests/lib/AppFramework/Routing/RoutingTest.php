@@ -123,10 +123,11 @@ class RoutingTest extends \Test\TestCase
 	}
 
 	/**
-	 * @expectedException \UnexpectedValueException
 	 */
 	public function testSimpleRouteWithBrokenName()
 	{
+	    $this->expectException(\UnexpectedValueException::class);
+
 		$routes = array('routes' => array(
 			array('name' => 'folders_open', 'url' => '/folders/{folderId}/open', 'verb' => 'delete')
 		));
@@ -145,9 +146,10 @@ class RoutingTest extends \Test\TestCase
 	}
 
 	/**
-	 * @expectedException \UnexpectedValueException
 	 */
 	public function testSimpleOCSRouteWithBrokenName() {
+	    $this->expectException(\UnexpectedValueException::class);
+
 		$routes = ['ocs' => [
 			['name' => 'folders_open', 'url' => '/folders/{folderId}/open', 'verb' => 'delete']
 		]];

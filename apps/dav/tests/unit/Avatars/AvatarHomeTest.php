@@ -48,10 +48,11 @@ class AvatarHomeTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\Forbidden
 	 * @dataProvider providesForbiddenMethods
 	 */
 	public function testForbiddenMethods($method) {
+	    $this->expectException(\Sabre\DAV\Exception\Forbidden::class);
+
 		$this->home->$method('');
 	}
 

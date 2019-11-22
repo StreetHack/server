@@ -167,9 +167,10 @@ class SystemTagObjectMapperTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testGetObjectsForTagsLimitWithMultipleTags() {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$this->tagMapper->getObjectIdsForTags(
 			[$this->tag1->getId(), $this->tag2->getId(), $this->tag3->getId()],
 			'testtype',
@@ -191,9 +192,10 @@ class SystemTagObjectMapperTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\SystemTag\TagNotFoundException
 	 */
 	public function testGetObjectsForNonExistingTag() {
+	    $this->expectException(\OCP\SystemTag\TagNotFoundException::class);
+
 		$this->tagMapper->getObjectIdsForTags(
 			[100],
 			'testtype'
@@ -229,9 +231,10 @@ class SystemTagObjectMapperTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\SystemTag\TagNotFoundException
 	 */
 	public function testAssignNonExistingTags() {
+	    $this->expectException(\OCP\SystemTag\TagNotFoundException::class);
+
 		$this->tagMapper->assignTags('1', 'testtype', [100]);
 	}
 
@@ -256,9 +259,10 @@ class SystemTagObjectMapperTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\SystemTag\TagNotFoundException
 	 */
 	public function testUnassignNonExistingTags() {
+	    $this->expectException(\OCP\SystemTag\TagNotFoundException::class);
+
 		$this->tagMapper->unassignTags('1', 'testtype', [100]);
 	}
 
@@ -387,9 +391,10 @@ class SystemTagObjectMapperTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\SystemTag\TagNotFoundException
 	 */
 	public function testHaveTagNonExisting() {
+	    $this->expectException(\OCP\SystemTag\TagNotFoundException::class);
+
 		$this->tagMapper->haveTag(
 			['1'],
 			'testtype',

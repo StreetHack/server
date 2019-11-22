@@ -53,10 +53,11 @@ class ProviderLoaderTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage Could not load two-factor auth provider \OCA\MyFaulty2faApp\DoesNotExist
 	 */
 	public function testFailHardIfProviderCanNotBeLoaded() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('Could not load two-factor auth provider \\OCA\\MyFaulty2faApp\\DoesNotExist');
+
 		$this->appManager->expects($this->once())
 			->method('getEnabledAppsForUser')
 			->with($this->user)

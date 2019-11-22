@@ -68,17 +68,19 @@ class ManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\Comments\NotFoundException
 	 */
 	public function testGetCommentNotFound() {
+	    $this->expectException(\OCP\Comments\NotFoundException::class);
+
 		$manager = $this->getManager();
 		$manager->get('22');
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testGetCommentNotFoundInvalidInput() {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$manager = $this->getManager();
 		$manager->get('unexisting22');
 	}
@@ -126,17 +128,19 @@ class ManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\Comments\NotFoundException
 	 */
 	public function testGetTreeNotFound() {
+	    $this->expectException(\OCP\Comments\NotFoundException::class);
+
 		$manager = $this->getManager();
 		$manager->getTree('22');
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testGetTreeNotFoundInvalidIpnut() {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$manager = $this->getManager();
 		$manager->getTree('unexisting22');
 	}
@@ -411,13 +415,14 @@ class ManagerTest extends TestCase {
 
 	/**
 	 * @dataProvider invalidCreateArgsProvider
-	 * @expectedException \InvalidArgumentException
 	 * @param string $aType
 	 * @param string $aId
 	 * @param string $oType
 	 * @param string $oId
 	 */
 	public function testCreateCommentInvalidArguments($aType, $aId, $oType, $oId) {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$manager = $this->getManager();
 		$manager->create($aType, $aId, $oType, $oId);
 	}
@@ -437,9 +442,10 @@ class ManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\Comments\NotFoundException
 	 */
 	public function testDelete() {
+	    $this->expectException(\OCP\Comments\NotFoundException::class);
+
 		$manager = $this->getManager();
 
 		$done = $manager->delete('404');
@@ -498,9 +504,10 @@ class ManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\Comments\NotFoundException
 	 */
 	public function testSaveUpdateException() {
+	    $this->expectException(\OCP\Comments\NotFoundException::class);
+
 		$manager = $this->getManager();
 		$comment = new Comment();
 		$comment
@@ -517,9 +524,10 @@ class ManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \UnexpectedValueException
 	 */
 	public function testSaveIncomplete() {
+	    $this->expectException(\UnexpectedValueException::class);
+
 		$manager = $this->getManager();
 		$comment = new Comment();
 		$comment->setMessage('from no one to nothing');
@@ -562,11 +570,12 @@ class ManagerTest extends TestCase {
 
 	/**
 	 * @dataProvider invalidActorArgsProvider
-	 * @expectedException \InvalidArgumentException
 	 * @param string $type
 	 * @param string $id
 	 */
 	public function testDeleteReferencesOfActorInvalidInput($type, $id) {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$manager = $this->getManager();
 		$manager->deleteReferencesOfActor($type, $id);
 	}
@@ -630,11 +639,12 @@ class ManagerTest extends TestCase {
 
 	/**
 	 * @dataProvider invalidObjectArgsProvider
-	 * @expectedException \InvalidArgumentException
 	 * @param string $type
 	 * @param string $id
 	 */
 	public function testDeleteCommentsAtObjectInvalidInput($type, $id) {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$manager = $this->getManager();
 		$manager->deleteCommentsAtObject($type, $id);
 	}
@@ -798,9 +808,10 @@ class ManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OutOfBoundsException
 	 */
 	public function testRegisterResolverDuplicate() {
+	    $this->expectException(\OutOfBoundsException::class);
+
 		$manager = $this->getManager();
 
 		$planetClosure = function ($name) {
@@ -811,9 +822,10 @@ class ManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testRegisterResolverInvalidType() {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$manager = $this->getManager();
 
 		$planetClosure = function ($name) {
@@ -823,9 +835,10 @@ class ManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OutOfBoundsException
 	 */
 	public function testResolveDisplayNameUnregisteredType() {
+	    $this->expectException(\OutOfBoundsException::class);
+
 		$manager = $this->getManager();
 
 		$planetClosure = function ($name) {
@@ -848,9 +861,10 @@ class ManagerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testResolveDisplayNameInvalidType() {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$manager = $this->getManager();
 
 		$planetClosure = function () {

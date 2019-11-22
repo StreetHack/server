@@ -442,10 +442,11 @@ class AccessTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage LDAP password changes are disabled
 	 */
 	public function testSetPasswordWithDisabledChanges() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('LDAP password changes are disabled');
+
 		$this->connection
 			->method('__get')
 			->willReturn(false);
@@ -474,10 +475,11 @@ class AccessTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\HintException
-	 * @expectedExceptionMessage Password change rejected.
 	 */
 	public function testSetPasswordWithRejectedChange() {
+	    $this->expectException(\OC\HintException::class);
+	    $this->expectExceptionMessage('Password change rejected.');
+
 		$this->connection
 			->method('__get')
 			->willReturn(true);

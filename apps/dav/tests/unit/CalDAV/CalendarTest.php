@@ -74,9 +74,10 @@ class CalendarTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\Forbidden
 	 */
 	public function testDeleteFromGroup() {
+	    $this->expectException(\Sabre\DAV\Exception\Forbidden::class);
+
 		/** @var \PHPUnit_Framework_MockObject_MockObject | CalDavBackend $backend */
 		$backend = $this->getMockBuilder(CalDavBackend::class)->disableOriginalConstructor()->getMock();
 		$backend->expects($this->never())->method('updateShares');

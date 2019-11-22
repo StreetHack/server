@@ -137,9 +137,10 @@ class ProviderTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testGetFileThrows() {
+	    $this->expectException(\InvalidArgumentException::class);
+
 		$provider = $this->getProvider();
 		self::invokePrivate($provider, 'getFile', ['/Foo/Bar.txt', null]);
 	}

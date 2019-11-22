@@ -164,10 +164,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Wrong share ID, share doesn't exist
 	 */
 	public function testDeleteShareShareNotFound() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Wrong share ID, share doesn\'t exist');
+
 		$this->shareManager
 			->expects($this->exactly(3))
 			->method('getShareById')
@@ -212,10 +213,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Could not delete share
 	 */
 	public function testDeleteShareLocked() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Could not delete share');
+
 		$node = $this->getMockBuilder(File::class)->getMock();
 
 		$share = $this->newShare();
@@ -400,10 +402,11 @@ class ShareAPIControllerTest extends TestCase {
 	/**
 	 * You cannot remove a share if you're not
 	 * in the group the share is shared with
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Wrong share ID, share doesn't exist
 	 */
 	public function testDeleteSharedWithGroupIDontBelongTo() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Wrong share ID, share doesn\'t exist');
+
 		$node = $this->getMockBuilder(File::class)->getMock();
 
 		$share = $this->newShare();
@@ -767,10 +770,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Wrong share ID, share doesn't exist
 	 */
 	public function testGetShareInvalidNode() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Wrong share ID, share doesn\'t exist');
+
 		$share = \OC::$server->getShareManager()->newShare();
 		$share->setSharedBy('initiator')
 			->setSharedWith('recipient')
@@ -1533,18 +1537,20 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Please specify a file or folder path
 	 */
 	public function testCreateShareNoPath() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Please specify a file or folder path');
+
 		$this->ocs->createShare();
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Wrong path, file/folder doesn't exist
 	 */
 	public function testCreateShareInvalidPath() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Wrong path, file/folder doesn\'t exist');
+
 		$userFolder = $this->getMockBuilder(Folder::class)->getMock();
 		$this->rootFolder->expects($this->once())
 			->method('getUserFolder')
@@ -1560,10 +1566,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage invalid permissions
 	 */
 	public function testCreateShareInvalidPermissions() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('invalid permissions');
+
 		$share = $this->newShare();
 		$this->shareManager->method('newShare')->willReturn($share);
 
@@ -1587,10 +1594,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Please specify a valid user
 	 */
 	public function testCreateShareUserNoShareWith() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Please specify a valid user');
+
 		$share = $this->newShare();
 		$this->shareManager->method('newShare')->willReturn($share);
 
@@ -1619,10 +1627,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Please specify a valid user
 	 */
 	public function testCreateShareUserNoValidShareWith() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Please specify a valid user');
+
 		$share = $this->newShare();
 		$this->shareManager->method('newShare')->willReturn($share);
 
@@ -1719,10 +1728,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Please specify a valid group
 	 */
 	public function testCreateShareGroupNoValidShareWith() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Please specify a valid group');
+
 		$share = $this->newShare();
 		$this->shareManager->method('newShare')->willReturn($share);
 		$this->shareManager->method('createShare')->will($this->returnArgument(0));
@@ -1828,10 +1838,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Group sharing is disabled by the administrator
 	 */
 	public function testCreateShareGroupNotAllowed() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Group sharing is disabled by the administrator');
+
 		$share = $this->newShare();
 		$this->shareManager->method('newShare')->willReturn($share);
 
@@ -1862,10 +1873,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Public link sharing is disabled by the administrator
 	 */
 	public function testCreateShareLinkNoLinksAllowed() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Public link sharing is disabled by the administrator');
+
 		$this->request
 			->method('getParam')
 			->will($this->returnValueMap([
@@ -1888,10 +1900,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSForbiddenException
-	 * @expectedExceptionMessage Public upload disabled by the administrator
 	 */
 	public function testCreateShareLinkNoPublicUpload() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSForbiddenException::class);
+	    $this->expectExceptionMessage('Public upload disabled by the administrator');
+
 		$path = $this->getMockBuilder(Folder::class)->getMock();
 		$storage = $this->createMock(Storage::class);
 		$storage->method('instanceOfStorage')
@@ -1908,10 +1921,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Public upload is only possible for publicly shared folders
 	 */
 	public function testCreateShareLinkPublicUploadFile() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Public upload is only possible for publicly shared folders');
+
 		$path = $this->getMockBuilder(File::class)->getMock();
 		$storage = $this->createMock(Storage::class);
 		$storage->method('instanceOfStorage')
@@ -2034,10 +2048,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSForbiddenException
-	 * @expectedExceptionMessage Sharing valid-path sending the password by Nextcloud Talk failed because Nextcloud Talk is not enabled
      */
 	public function testCreateShareLinkSendPasswordByTalkWithTalkDisabled() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSForbiddenException::class);
+	    $this->expectExceptionMessage('Sharing valid-path sending the password by Nextcloud Talk failed because Nextcloud Talk is not enabled');
+
 		$ocs = $this->mockFormatShare();
 
 		$path = $this->getMockBuilder(Folder::class)->getMock();
@@ -2109,10 +2124,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Invalid date, date format must be YYYY-MM-DD
 	 */
 	public function testCreateShareInvalidExpireDate() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Invalid date, date format must be YYYY-MM-DD');
+
 		$ocs = $this->mockFormatShare();
 
 		$path = $this->getMockBuilder(Folder::class)->getMock();
@@ -2210,10 +2226,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSForbiddenException
-	 * @expectedExceptionMessage Sharing valid-path failed because the back end does not support room shares
 	 */
 	public function testCreateShareRoomHelperNotAvailable() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSForbiddenException::class);
+	    $this->expectExceptionMessage('Sharing valid-path failed because the back end does not support room shares');
+
 		$ocs = $this->mockFormatShare();
 
 		$share = $this->newShare();
@@ -2251,10 +2268,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Exception thrown by the helper
 	 */
 	public function testCreateShareRoomHelperThrowException() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Exception thrown by the helper');
+
 		$ocs = $this->mockFormatShare();
 
 		$share = $this->newShare();
@@ -2369,10 +2387,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSNotFoundException
-	 * @expectedExceptionMessage Wrong share ID, share doesn't exist
 	 */
 	public function testUpdateShareCantAccess() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSNotFoundException::class);
+	    $this->expectExceptionMessage('Wrong share ID, share doesn\'t exist');
+
 		$node = $this->getMockBuilder(Folder::class)->getMock();
 		$share = $this->newShare();
 		$share->setNode($node);
@@ -2396,10 +2415,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSBadRequestException
-	 * @expectedExceptionMessage Wrong or no update parameter given
 	 */
 	public function testUpdateNoParametersLink() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSBadRequestException::class);
+	    $this->expectExceptionMessage('Wrong or no update parameter given');
+
 		$node = $this->getMockBuilder(Folder::class)->getMock();
 		$share = $this->newShare();
 		$share->setPermissions(\OCP\Constants::PERMISSION_ALL)
@@ -2417,10 +2437,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSBadRequestException
-	 * @expectedExceptionMessage Wrong or no update parameter given
 	 */
 	public function testUpdateNoParametersOther() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSBadRequestException::class);
+	    $this->expectExceptionMessage('Wrong or no update parameter given');
+
 		$node = $this->getMockBuilder(Folder::class)->getMock();
 		$share = $this->newShare();
 		$share->setPermissions(\OCP\Constants::PERMISSION_ALL)
@@ -2606,10 +2627,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSBadRequestException
-	 * @expectedExceptionMessage Invalid date. Format must be YYYY-MM-DD
 	 */
 	public function testUpdateLinkShareInvalidDate() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSBadRequestException::class);
+	    $this->expectExceptionMessage('Invalid date. Format must be YYYY-MM-DD');
+
 		$ocs = $this->mockFormatShare();
 
 		$folder = $this->getMockBuilder(Folder::class)->getMock();
@@ -2644,10 +2666,11 @@ class ShareAPIControllerTest extends TestCase {
 
 	/**
 	 * @dataProvider publicUploadParamsProvider
-	 * @expectedException \OCP\AppFramework\OCS\OCSForbiddenException
-	 * @expectedExceptionMessage Public upload disabled by the administrator
 	 */
 	public function testUpdateLinkSharePublicUploadNotAllowed($permissions, $publicUpload, $expireDate, $password) {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSForbiddenException::class);
+	    $this->expectExceptionMessage('Public upload disabled by the administrator');
+
 		$ocs = $this->mockFormatShare();
 
 		$folder = $this->getMockBuilder(Folder::class)->getMock();
@@ -2665,10 +2688,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSBadRequestException
-	 * @expectedExceptionMessage Public upload is only possible for publicly shared folders
 	 */
 	public function testUpdateLinkSharePublicUploadOnFile() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSBadRequestException::class);
+	    $this->expectExceptionMessage('Public upload is only possible for publicly shared folders');
+
 		$ocs = $this->mockFormatShare();
 
 		$file = $this->getMockBuilder(File::class)->getMock();
@@ -2778,10 +2802,11 @@ class ShareAPIControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSForbiddenException
-	 * @expectedExceptionMessage Sharing sending the password by Nextcloud Talk failed because Nextcloud Talk is not enabled
      */
 	public function testUpdateLinkShareSendPasswordByTalkWithTalkDisabledDoesNotChangeOther() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSForbiddenException::class);
+	    $this->expectExceptionMessage('Sharing sending the password by Nextcloud Talk failed because Nextcloud Talk is not enabled');
+
 		$ocs = $this->mockFormatShare();
 
 		$date = new \DateTime('2000-01-01');

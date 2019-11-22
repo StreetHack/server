@@ -51,10 +51,11 @@ class LimiterTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Security\RateLimiting\Exception\RateLimitExceededException
-	 * @expectedExceptionMessage Rate limit exceeded
 	 */
 	public function testRegisterAnonRequestExceeded() {
+	    $this->expectException(\OC\Security\RateLimiting\Exception\RateLimitExceededException::class);
+	    $this->expectExceptionMessage('Rate limit exceeded');
+
 		$this->backend
 			->expects($this->once())
 			->method('getAttempts')
@@ -95,10 +96,11 @@ class LimiterTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\Security\RateLimiting\Exception\RateLimitExceededException
-	 * @expectedExceptionMessage Rate limit exceeded
 	 */
 	public function testRegisterUserRequestExceeded() {
+	    $this->expectException(\OC\Security\RateLimiting\Exception\RateLimitExceededException::class);
+	    $this->expectExceptionMessage('Rate limit exceeded');
+
 		/** @var IUser|\PHPUnit_Framework_MockObject_MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user

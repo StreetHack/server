@@ -160,10 +160,11 @@ class InstallerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage Certificate "4112" has been revoked
 	 */
 	public function testDownloadAppWithRevokedCertificate() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('Certificate "4112" has been revoked');
+
 		$appArray = [
 			[
 				'id' => 'news',
@@ -204,10 +205,11 @@ gLgK8d8sKL60JMmKHN3boHrsThKBVA==
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage App with id news has a certificate not issued by a trusted Code Signing Authority
 	 */
 	public function testDownloadAppWithNotNextcloudCertificate() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('App with id news has a certificate not issued by a trusted Code Signing Authority');
+
 		$appArray = [
 			[
 				'id' => 'news',
@@ -247,10 +249,11 @@ YSu356M=
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage App with id news has a cert issued to passman
 	 */
 	public function testDownloadAppWithDifferentCN() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('App with id news has a cert issued to passman');
+
 		$appArray = [
 			[
 				'id' => 'news',
@@ -290,10 +293,11 @@ u/spPSSVhaun5BA1FlphB2TkgnzlCmxJa63nFY045e/Jq+IKMcqqZl/092gbI2EQ
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage App with id passman has invalid signature
 	 */
 	public function testDownloadAppWithInvalidSignature() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('App with id passman has invalid signature');
+
 		$appArray = [
 			[
 				'id' => 'passman',
@@ -358,10 +362,11 @@ u/spPSSVhaun5BA1FlphB2TkgnzlCmxJa63nFY045e/Jq+IKMcqqZl/092gbI2EQ
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage Extracted app testapp has more than 1 folder
 	 */
 	public function testDownloadAppWithMoreThanOneFolderDownloaded() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('Extracted app testapp has more than 1 folder');
+
 		$appArray = [
 			[
 				'id' => 'testapp',
@@ -442,10 +447,11 @@ YwDVP+QmNRzx72jtqAN/Kc3CvQ9nkgYhU65B95aX0xA=',
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage App for id testapp has a wrong app ID in info.xml: testapp1
 	 */
 	public function testDownloadAppWithMismatchingIdentifier() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('App for id testapp has a wrong app ID in info.xml: testapp1');
+
 		$appArray = [
 			[
 				'id' => 'testapp',
@@ -607,10 +613,11 @@ MPLX6f5V9tCJtlH6ztmEcDROfvuVc0U3rEhqx2hphoyo+MZrPFpdcJL8KkIdMKbY
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage App for id testapp has version 0.9 and tried to update to lower version 0.8
 	 */
 	public function testDownloadAppWithDowngrade() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('App for id testapp has version 0.9 and tried to update to lower version 0.8');
+
 		$appArray = [
 			[
 				'id' => 'testapp',

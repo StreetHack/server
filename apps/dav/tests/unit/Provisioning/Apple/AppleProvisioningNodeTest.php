@@ -46,10 +46,11 @@ class AppleProvisioningNodeTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\Forbidden
-	 * @expectedExceptionMessage Renaming apple-provisioning.mobileconfig is forbidden
 	 */
 	public function testSetName() {
+	    $this->expectException(\Sabre\DAV\Exception\Forbidden::class);
+	    $this->expectExceptionMessage('Renaming apple-provisioning.mobileconfig is forbidden');
+
 		$this->node->setName('foo');
 	}
 
@@ -58,10 +59,11 @@ class AppleProvisioningNodeTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\Forbidden
-	 * @expectedExceptionMessage apple-provisioning.mobileconfig may not be deleted
 	 */
 	public function testDelete() {
+	    $this->expectException(\Sabre\DAV\Exception\Forbidden::class);
+	    $this->expectExceptionMessage('apple-provisioning.mobileconfig may not be deleted');
+
 		$this->node->delete();
 	}
 
@@ -77,10 +79,11 @@ class AppleProvisioningNodeTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Sabre\DAV\Exception\Forbidden
-	 * @expectedExceptionMessage apple-provisioning.mobileconfig's properties may not be altered.
 	 */
 	public function testGetPropPatch() {
+	    $this->expectException(\Sabre\DAV\Exception\Forbidden::class);
+	    $this->expectExceptionMessage('apple-provisioning.mobileconfig\'s properties may not be altered.');
+
 		$propPatch = $this->createMock(PropPatch::class);
 
 		$this->node->propPatch($propPatch);

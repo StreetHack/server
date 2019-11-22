@@ -220,10 +220,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 102
 	 */
 	public function testAddUserAlreadyExisting() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(102);
+
 		$this->userManager
 			->expects($this->once())
 			->method('userExists')
@@ -254,11 +255,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 104
-	 * @expectedExceptionMessage group NonExistingGroup does not exist
 	 */
 	public function testAddUserNonExistingGroup() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('group NonExistingGroup does not exist');
+	    $this->expectExceptionCode(104);
+
 		$this->userManager
 			->expects($this->once())
 			->method('userExists')
@@ -290,11 +292,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 104
-	 * @expectedExceptionMessage group NonExistingGroup does not exist
 	 */
 	public function testAddUserExistingGroupNonExistingGroup() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('group NonExistingGroup does not exist');
+	    $this->expectExceptionCode(104);
+
 		$this->userManager
 			->expects($this->once())
 			->method('userExists')
@@ -480,11 +483,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 111
-	 * @expectedExceptionMessage Could not create non-existing user id
 	 */
 	public function testAddUserFailedToGenerateUserID() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('Could not create non-existing user id');
+	    $this->expectExceptionCode(111);
+
 		$this->config
 			->expects($this->any())
 			->method('getAppValue')
@@ -523,11 +527,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 110
-	 * @expectedExceptionMessage Required email address was not provided
 	 */
 	public function testAddUserEmailRequired() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('Required email address was not provided');
+	    $this->expectExceptionCode(110);
+
 		$this->config
 			->expects($this->any())
 			->method('getAppValue')
@@ -630,11 +635,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
-	 * @expectedExceptionMessage Bad request
 	 */
 	public function testAddUserUnsuccessful() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('Bad request');
+	    $this->expectExceptionCode(101);
+
 		$exception = new Exception('User backend not found.');
 		$this->userManager
 			->expects($this->once())
@@ -675,11 +681,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 106
-	 * @expectedExceptionMessage no group specified (required for subadmins)
 	 */
 	public function testAddUserAsSubAdminNoGroup() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('no group specified (required for subadmins)');
+	    $this->expectExceptionCode(106);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)
 			->disableOriginalConstructor()
 			->getMock();
@@ -708,11 +715,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 105
-	 * @expectedExceptionMessage insufficient privileges for group ExistingGroup
 	 */
 	public function testAddUserAsSubAdminValidGroupNotSubAdmin() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('insufficient privileges for group ExistingGroup');
+	    $this->expectExceptionCode(105);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)
 			->disableOriginalConstructor()
 			->getMock();
@@ -851,11 +859,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 404
-	 * @expectedExceptionMessage User does not exist
 	 */
 	public function testGetUserTargetDoesNotExist() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('User does not exist');
+	    $this->expectExceptionCode(404);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)
 			->disableOriginalConstructor()
 			->getMock();
@@ -1143,10 +1152,11 @@ class UsersControllerTest extends TestCase {
 
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 997
 	 */
 	public function testGetUserDataAsSubAdminAndUserIsNotAccessible() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(997);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)
 			->disableOriginalConstructor()
 			->getMock();
@@ -1377,10 +1387,11 @@ class UsersControllerTest extends TestCase {
 
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 102
 	 */
 	public function testEditUserRegularUserSelfEditChangeEmailInvalid() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(102);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)
 			->disableOriginalConstructor()
 			->getMock();
@@ -1446,10 +1457,11 @@ class UsersControllerTest extends TestCase {
 
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 997
 	 */
 	public function testEditUserRegularUserSelfEditChangeQuota() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(997);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)
 			->disableOriginalConstructor()
 			->getMock();
@@ -1511,11 +1523,12 @@ class UsersControllerTest extends TestCase {
 
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 103
-	 * @expectedExceptionMessage Invalid quota value ABC
 	 */
 	public function testEditUserAdminUserSelfEditChangeInvalidQuota() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('Invalid quota value ABC');
+	    $this->expectExceptionCode(103);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$loggedInUser
 			->expects($this->any())
@@ -1635,9 +1648,10 @@ class UsersControllerTest extends TestCase {
 
 	/**
 	 * @dataProvider dataEditUserSelfEditChangeLanguageButForced
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
 	 */
 	public function testEditUserSelfEditChangeLanguageButForced($forced) {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+
 		$this->config->expects($this->any())
 			->method('getSystemValue')
 			->willReturnMap([
@@ -1719,9 +1733,10 @@ class UsersControllerTest extends TestCase {
 
 	/**
 	 * @dataProvider dataEditUserSelfEditChangeLanguageButForced
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
 	 */
 	public function testEditUserAdminEditChangeLanguageInvalidLanguage() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+
 
 		$this->l10nFactory->expects($this->once())
 			->method('findAvailableLanguages')
@@ -1802,10 +1817,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 997
 	 */
 	public function testEditUserSubadminUserInaccessible() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(997);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$loggedInUser
 			->expects($this->any())
@@ -1842,10 +1858,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
 	 */
 	public function testDeleteUserNotExistingUser() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(101);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$loggedInUser
 			->expects($this->any())
@@ -1865,10 +1882,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
 	 */
 	public function testDeleteUserSelf() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(101);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$loggedInUser
 			->expects($this->any())
@@ -1926,10 +1944,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
 	 */
 	public function testDeleteUnsuccessfulUserAsAdmin() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(101);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$loggedInUser
 			->expects($this->any())
@@ -2007,10 +2026,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
 	 */
 	public function testDeleteUnsuccessfulUserAsSubadmin() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(101);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$loggedInUser
 			->expects($this->any())
@@ -2055,10 +2075,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 997
 	 */
 	public function testDeleteUserAsSubAdminAndUserIsNotAccessible() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(997);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$loggedInUser
 			->expects($this->any())
@@ -2099,10 +2120,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 998
 	 */
 	public function testGetUsersGroupsTargetUserNotExisting() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(998);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$this->userSession
 			->expects($this->once())
@@ -2236,10 +2258,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 997
 	 */
 	public function testGetUsersGroupsForSubAdminUserAndUserIsInaccessible() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(997);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$loggedInUser
 			->expects($this->exactly(2))
@@ -2285,10 +2308,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 102
 	 */
 	public function testAddToGroupWithTargetGroupNotExisting() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(102);
+
 		$this->groupManager->expects($this->once())
 			->method('get')
 			->with('GroupToAddTo')
@@ -2298,18 +2322,20 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
 	 */
 	public function testAddToGroupWithNoGroupSpecified() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(101);
+
 		$this->api->addToGroup('TargetUser');
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 103
 	 */
 	public function testAddToGroupWithTargetUserNotExisting() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(103);
+
 		$targetGroup = $this->createMock(IGroup::class);
 		$this->groupManager->expects($this->once())
 			->method('get')
@@ -2320,10 +2346,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 104
 	 */
 	public function testAddToGroupNoSubadmin() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(104);
+
 		$targetUser = $this->createMock(IUser::class);
 		$loggedInUser = $this->createMock(IUser::class);
 		$loggedInUser->expects($this->once())
@@ -2454,10 +2481,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
 	 */
 	public function testRemoveFromGroupWithNoTargetGroup() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(101);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$this->userSession
 			->expects($this->once())
@@ -2468,10 +2496,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
 	 */
 	public function testRemoveFromGroupWithEmptyTargetGroup() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(101);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$this->userSession
 			->expects($this->once())
@@ -2482,10 +2511,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 102
 	 */
 	public function testRemoveFromGroupWithNotExistingTargetGroup() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(102);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$this->userSession
 			->expects($this->once())
@@ -2501,10 +2531,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 103
 	 */
 	public function testRemoveFromGroupWithNotExistingTargetUser() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(103);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$targetGroup = $this->getMockBuilder('\OCP\IGroup')->disableOriginalConstructor()->getMock();
 		$this->userSession
@@ -2526,10 +2557,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 104
 	 */
 	public function testRemoveFromGroupWithoutPermission() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(104);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$loggedInUser
 			->expects($this->once())
@@ -2567,11 +2599,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 105
-	 * @expectedExceptionMessage Cannot remove yourself from the admin group
 	 */
 	public function testRemoveFromGroupAsAdminFromAdmin() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('Cannot remove yourself from the admin group');
+	    $this->expectExceptionCode(105);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$loggedInUser
 			->expects($this->any())
@@ -2617,11 +2650,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 105
-	 * @expectedExceptionMessage Cannot remove yourself from this group as you are a SubAdmin
 	 */
 	public function testRemoveFromGroupAsSubAdminFromSubAdmin() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('Cannot remove yourself from this group as you are a SubAdmin');
+	    $this->expectExceptionCode(105);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$loggedInUser
 			->expects($this->any())
@@ -2672,11 +2706,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 105
-	 * @expectedExceptionMessage Not viable to remove user from the last group you are SubAdmin of
 	 */
 	public function testRemoveFromGroupAsSubAdminFromLastSubAdminGroup() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('Not viable to remove user from the last group you are SubAdmin of');
+	    $this->expectExceptionCode(105);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$loggedInUser
 			->expects($this->any())
@@ -2775,11 +2810,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
-	 * @expectedExceptionMessage User does not exist
 	 */
 	public function testAddSubAdminWithNotExistingTargetUser() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('User does not exist');
+	    $this->expectExceptionCode(101);
+
 		$this->userManager
 			->expects($this->once())
 			->method('get')
@@ -2790,11 +2826,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 102
-	 * @expectedExceptionMessage Group does not exist
 	 */
 	public function testAddSubAdminWithNotExistingTargetGroup() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('Group does not exist');
+	    $this->expectExceptionCode(102);
+
 
 		$targetUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$this->userManager
@@ -2812,11 +2849,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 103
-	 * @expectedExceptionMessage Cannot create subadmins for admin group
 	 */
 	public function testAddSubAdminToAdminGroup() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('Cannot create subadmins for admin group');
+	    $this->expectExceptionCode(103);
+
 		$targetUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$targetGroup = $this->getMockBuilder('\OCP\IGroup')->disableOriginalConstructor()->getMock();
 		$targetGroup
@@ -2899,11 +2937,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
-	 * @expectedExceptionMessage User does not exist
 	 */
 	public function testRemoveSubAdminNotExistingTargetUser() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('User does not exist');
+	    $this->expectExceptionCode(101);
+
 		$this->userManager
 			->expects($this->once())
 			->method('get')
@@ -2914,11 +2953,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
-	 * @expectedExceptionMessage Group does not exist
 	 */
 	public function testRemoveSubAdminNotExistingTargetGroup() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('Group does not exist');
+	    $this->expectExceptionCode(101);
+
 		$targetUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$this->userManager
 			->expects($this->once())
@@ -2936,11 +2976,12 @@ class UsersControllerTest extends TestCase {
 
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 102
-	 * @expectedExceptionMessage User is not a subadmin of this group
 	 */
 	public function testRemoveSubAdminFromNotASubadmin() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('User is not a subadmin of this group');
+	    $this->expectExceptionCode(102);
+
 		$targetUser = $this->getMockBuilder(IUser::class)->disableOriginalConstructor()->getMock();
 		$targetGroup = $this->getMockBuilder('\OCP\IGroup')->disableOriginalConstructor()->getMock();
 		$this->userManager
@@ -3002,11 +3043,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 404
-	 * @expectedExceptionMessage User does not exist
 	 */
 	public function testGetUserSubAdminGroupsNotExistingTargetUser() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('User does not exist');
+	    $this->expectExceptionCode(404);
+
 		$this->userManager
 			->expects($this->once())
 			->method('get')
@@ -3156,9 +3198,10 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
 	 */
 	public function testGetCurrentUserNotLoggedIn() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+
 
 		$this->userSession->expects($this->once())->method('getUser')
 			->willReturn(null);
@@ -3209,10 +3252,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 998
 	 */
 	public function testResendWelcomeMessageWithNotExistingTargetUser() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(998);
+
 		$this->userManager
 			->expects($this->once())
 			->method('get')
@@ -3223,10 +3267,11 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 997
 	 */
 	public function testResendWelcomeMessageAsSubAdminAndUserIsNotAccessible() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(997);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)
 			->disableOriginalConstructor()
 			->getMock();
@@ -3268,11 +3313,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
-	 * @expectedExceptionMessage Email address not available
 	 */
 	public function testResendWelcomeMessageNoEmail() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('Email address not available');
+	    $this->expectExceptionCode(101);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)
 			->disableOriginalConstructor()
 			->getMock();
@@ -3309,11 +3355,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
-	 * @expectedExceptionMessage Email address not available
 	 */
 	public function testResendWelcomeMessageNullEmail() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('Email address not available');
+	    $this->expectExceptionCode(101);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)
 			->disableOriginalConstructor()
 			->getMock();
@@ -3449,11 +3496,12 @@ class UsersControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 102
-	 * @expectedExceptionMessage Sending email failed
 	 */
 	public function testResendWelcomeMessageFailed() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionMessage('Sending email failed');
+	    $this->expectExceptionCode(102);
+
 		$loggedInUser = $this->getMockBuilder(IUser::class)
 			->disableOriginalConstructor()
 			->getMock();

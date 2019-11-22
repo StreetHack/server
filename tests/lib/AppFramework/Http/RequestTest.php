@@ -104,9 +104,10 @@ class RequestTest extends \Test\TestCase {
 
 
 	/**
-	 * @expectedException \RuntimeException
 	 */
 	public function testImmutableArrayAccess() {
+	    $this->expectException(\RuntimeException::class);
+
 		$vars = array(
 			'get' => array('name' => 'John Q. Public', 'nickname' => 'Joey'),
 			'method' => 'GET'
@@ -124,9 +125,10 @@ class RequestTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \RuntimeException
 	 */
 	public function testImmutableMagicAccess() {
+	    $this->expectException(\RuntimeException::class);
+
 		$vars = array(
 			'get' => array('name' => 'John Q. Public', 'nickname' => 'Joey'),
 			'method' => 'GET'
@@ -144,9 +146,10 @@ class RequestTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \LogicException
 	 */
 	public function testGetTheMethodRight() {
+	    $this->expectException(\LogicException::class);
+
 		$vars = array(
 			'get' => array('name' => 'John Q. Public', 'nickname' => 'Joey'),
 			'method' => 'GET',
@@ -1247,10 +1250,11 @@ class RequestTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage The requested uri(/foo.php) cannot be processed by the script '/var/www/index.php')
 	 */
 	public function testGetPathInfoNotProcessible() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('The requested uri(/foo.php) cannot be processed by the script \'/var/www/index.php\')');
+
 		$request = new Request(
 			[
 				'server' => [
@@ -1268,10 +1272,11 @@ class RequestTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage The requested uri(/foo.php) cannot be processed by the script '/var/www/index.php')
 	 */
 	public function testGetRawPathInfoNotProcessible() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('The requested uri(/foo.php) cannot be processed by the script \'/var/www/index.php\')');
+
 		$request = new Request(
 			[
 				'server' => [

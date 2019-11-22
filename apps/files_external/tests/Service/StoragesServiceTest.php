@@ -253,9 +253,10 @@ abstract class StoragesServiceTest extends \Test\TestCase {
 
 
 	/**
-	 * @expectedException \OCA\Files_External\NotFoundException
 	 */
 	public function testNonExistingStorage() {
+	    $this->expectException(\OCA\Files_External\NotFoundException::class);
+
 		$backend = $this->backendService->getBackend('identifier:\OCA\Files_External\Lib\Backend\SMB');
 		$authMechanism = $this->backendService->getAuthMechanism('identifier:\Auth\Mechanism');
 		$storage = new StorageConfig(255);
@@ -335,9 +336,10 @@ abstract class StoragesServiceTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\Files_External\NotFoundException
 	 */
 	public function testDeleteUnexistingStorage() {
+	    $this->expectException(\OCA\Files_External\NotFoundException::class);
+
 		$this->service->removeStorage(255);
 	}
 

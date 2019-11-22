@@ -73,10 +73,11 @@ class AppsControllerTest extends \OCA\Provisioning_API\Tests\TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 998
 	 */
 	public function testGetAppInfoOnBadAppID() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(998);
+
 		$this->api->getAppInfo('not_provisioning_api');
 	}
 
@@ -110,10 +111,11 @@ class AppsControllerTest extends \OCA\Provisioning_API\Tests\TestCase {
 	}
 
 	/**
-	 * @expectedException \OCP\AppFramework\OCS\OCSException
-	 * @expectedExceptionCode 101
 	 */
 	public function testGetAppsInvalidFilter() {
+	    $this->expectException(\OCP\AppFramework\OCS\OCSException::class);
+	    $this->expectExceptionCode(101);
+
 		$this->api->getApps('foo');
 	}
 }

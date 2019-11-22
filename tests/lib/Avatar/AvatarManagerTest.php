@@ -70,10 +70,11 @@ class AvatarManagerTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage user does not exist
 	 */
 	public function testGetAvatarInvalidUser() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('user does not exist');
+
 		$this->userManager
 			->expects($this->once())
 			->method('get')

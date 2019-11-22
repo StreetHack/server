@@ -68,10 +68,11 @@ class OCSTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage Invalid user response, expected field email not found
 	 */
 	public function testGetUserInvalidResponse() {
+	    $this->expectException(\Exception::class);
+	    $this->expectExceptionMessage('Invalid user response, expected field email not found');
+
 		$client = $this->getOCSClient();
 
 		$this->expectGetRequest($this->getOCSUrl('cloud/users/user'),
@@ -82,9 +83,10 @@ class OCSTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OC\ForbiddenException
 	 */
 	public function testInvalidPassword() {
+	    $this->expectException(\OC\ForbiddenException::class);
+
 		$client = $this->getOCSClient();
 
 		$this->expectGetRequest($this->getOCSUrl('cloud/users/user'),
